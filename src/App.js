@@ -6,9 +6,7 @@ function App() {
   const [bmkg, setBmkg] = useState([]);
 
   const getBmkg = async () => {
-    const response = await axios.get("http://localhost:3001/api", {
-      mode: "cors",
-    });
+    const response = await axios.get("http://localhost:3001/api");
     setBmkg(response.data);
     console.log(response.data);
   };

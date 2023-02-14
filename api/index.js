@@ -1,7 +1,10 @@
 const express = require("express");
+const cors = require("cors");
 const axios = require("axios");
 
 const app = express();
+
+app.use(cors());
 
 app.get("/api", async (req, res) => {
   try {
@@ -9,7 +12,6 @@ app.get("/api", async (req, res) => {
       "https://data.bmkg.go.id/DataMKG/TEWS/autogempa.json"
     );
     const data = response.data.Infogempa.gempa;
-    res.header("Access-Control-Allow-Origin", "*");
     res.json(data);
   } catch (error) {
     console.error(error);
@@ -18,5 +20,5 @@ app.get("/api", async (req, res) => {
 });
 
 app.listen(3001, () => {
-  console.log("Server listening on port 3000");
+  console.log("Server listening on port 3001");
 });
