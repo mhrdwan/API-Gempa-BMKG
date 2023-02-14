@@ -5,16 +5,16 @@ import { useEffect, useState } from "react";
 function App() {
   const [bmkg, setBmkg] = useState([]);
 
-  const getGmkg = async () => {
-    const response = await axios.get(
-      `https://data.bmkg.go.id/DataMKG/TEWS/autogempa.json`
-    );
-    setBmkg(response.data.Infogempa.gempa);
-    console.log(response.data.Infogempa.gempa);
+  const getBmkg = async () => {
+    const response = await axios.get("http://localhost:3001/api", {
+      mode: "cors",
+    });
+    setBmkg(response.data);
+    console.log(response.data);
   };
 
   useEffect(() => {
-    getGmkg();
+    getBmkg();
   }, []);
 
   return (
@@ -47,7 +47,7 @@ function App() {
                 {bmkg.Potensi}
               </h4>
               <h4>
-                Wilayan <br /> {bmkg.Wilayah}
+                Wilayah <br /> {bmkg.Wilayah}
               </h4>
             </div>
           </div>
